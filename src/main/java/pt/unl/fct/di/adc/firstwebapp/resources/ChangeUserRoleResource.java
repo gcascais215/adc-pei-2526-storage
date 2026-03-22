@@ -138,7 +138,7 @@ public class ChangeUserRoleResource {
 
 		String targetId = body.input.userId.trim();
 
-		String newRole = body.input.role.trim();
+		String newRole = body.input.newRole.trim();
 
 		Key userKey = datastore.newKeyFactory().setKind(USER_KIND).newKey(targetId);
 
