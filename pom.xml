@@ -129,6 +129,12 @@
 			<artifactId>google-cloud-tasks</artifactId>
 		</dependency>
 
+		<!-- Datastore client: com.google.cloud.datastore.* and com.google.cloud.Timestamp -->
+		<dependency>
+			<groupId>com.google.cloud</groupId>
+			<artifactId>google-cloud-datastore</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<build>
