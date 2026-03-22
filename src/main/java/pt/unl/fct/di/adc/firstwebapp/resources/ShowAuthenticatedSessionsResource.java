@@ -54,11 +54,11 @@ import pt.unl.fct.di.adc.firstwebapp.util.ShowAuthenticatedSessionsRequest;
 
 /**
 
- * Op6: {@code POST /rest/showauthenticatedsessions} — only {@code ADMIN}; lists all {@link SessionStore} rows.
+ * Op6: {@code POST /rest/showauthsessions } — only {@code ADMIN}; lists all {@link SessionStore} rows.
 
  */
 
-@Path("/showauthenticatedsessions")
+@Path("/showauthsessions")
 
 @Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 

@@ -54,11 +54,11 @@ import pt.unl.fct.di.adc.firstwebapp.util.SessionStore;
 
 /**
 
- * Op5: {@code POST /rest/modifyaccountattributes} — modify account attributes (username / key is immutable).
+ * Op5: {@code POST /rest/modaccount} — modify account attributes (username / key is immutable).
 
  */
 
-@Path("/modifyaccountattributes")
+@Path("/modaccount")
 
 @Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
 
