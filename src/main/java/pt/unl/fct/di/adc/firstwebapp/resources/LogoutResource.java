@@ -52,7 +52,7 @@ import pt.unl.fct.di.adc.firstwebapp.util.SessionStore;
 
  * Op10: {@code POST /rest/logout}.
 
- * USER/BOFFICER: {@code input.userId} must be themselves. ADMIN may target another {@code userId} (revoke all sessions).
+ * USER/BOFFICER: {@code input.username} must be themselves. ADMIN may target another {@code username} (revoke all sessions).
 
  */
 
@@ -123,7 +123,7 @@ public class LogoutResource {
 
 		String callerRole = callerSession.getString(SessionStore.PROP_ROLE);
 
-		String inputUserId = body.input.userId.trim();
+		String inputUserId = body.input.username.trim();
 
 
 
@@ -209,9 +209,9 @@ public class LogoutResource {
 
 	private static boolean tokenPayloadMatchesSession(AuthToken t, Entity session) {
 
-		if (t.userId != null && !t.userId.isBlank()) {
+		if (t.username != null && !t.username.isBlank()) {
 
-			if (!session.getString(SessionStore.PROP_USER_ID).equals(t.userId.trim())) {
+			if (!session.getString(SessionStore.PROP_USER_ID).equals(t.username.trim())) {
 
 				return false;
 

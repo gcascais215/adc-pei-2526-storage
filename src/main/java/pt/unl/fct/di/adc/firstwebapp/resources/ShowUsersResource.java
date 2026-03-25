@@ -35,7 +35,6 @@ import pt.unl.fct.di.adc.firstwebapp.util.ShowUsersRequest;
 public class ShowUsersResource {
 
 	private static final String USER_KIND = "User";
-	private static final String USER_EMAIL = "user_email";
 	private static final String USER_ROLE = "user_role";
 
 	private static final Logger LOG = Logger.getLogger(ShowUsersResource.class.getName());
@@ -80,9 +79,7 @@ public class ShowUsersResource {
 				Entity u = results.next();
 				String username = u.getKey().getName();
 				UserSummary row = new UserSummary();
-				row.userId = username;
 				row.username = username;
-				row.email = u.contains(USER_EMAIL) ? u.getString(USER_EMAIL) : "";
 				row.role = u.contains(USER_ROLE) ? u.getString(USER_ROLE) : "USER";
 				list.add(row);
 			}

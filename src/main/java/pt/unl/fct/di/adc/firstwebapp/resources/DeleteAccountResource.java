@@ -72,7 +72,7 @@ public class DeleteAccountResource {
 			return errorResponse(Status.FORBIDDEN, ApiErrorCodes.UNAUTHORIZED, ApiErrorCodes.MSG_UNAUTHORIZED);
 		}
 
-		String targetId = body.input.userId.trim();
+		String targetId = body.input.username.trim();
 		Key userKey = datastore.newKeyFactory().setKind(USER_KIND).newKey(targetId);
 
 		try {

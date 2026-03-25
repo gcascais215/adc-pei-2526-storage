@@ -4,7 +4,7 @@ package pt.unl.fct.di.adc.firstwebapp.util;
 
 /**
 
- * Op8: {@code "input": { "userId", "newRole" }} — {@code newRole} is the new value (USER | BOFFICER | ADMIN).
+ * Op8: {@code "input": { "username", "newRole" }} — {@code newRole} is the new value (USER | BOFFICER | ADMIN).
 
  */
 
@@ -12,7 +12,7 @@ public class ChangeUserRoleInput {
 
 
 
-	public String userId;
+	public String username;
 
 	public String newRole;
 
@@ -26,7 +26,7 @@ public class ChangeUserRoleInput {
 
 	public boolean valid() {
 
-		return userId != null && !userId.isBlank() && validRole(newRole);
+		return username != null && !username.isBlank() && validRole(newRole);
 
 	}
 

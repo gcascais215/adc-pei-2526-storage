@@ -1,7 +1,7 @@
 package pt.unl.fct.di.adc.firstwebapp.util;
 
 /**
- * Op9: {@code { "input": { "userId", "oldPassword", "newPassword" }, "token": { ... } }} .
+ * Op9: {@code { "input": { "username", "oldPassword", "newPassword" }, "token": { ... } }} .
  */
 public class ChangePasswordRequest {
 

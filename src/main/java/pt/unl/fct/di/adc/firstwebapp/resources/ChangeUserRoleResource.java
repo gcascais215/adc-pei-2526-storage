@@ -136,7 +136,7 @@ public class ChangeUserRoleResource {
 
 
 
-		String targetId = body.input.userId.trim();
+		String targetId = body.input.username.trim();
 
 		String newRole = body.input.newRole.trim();
 

@@ -12,8 +12,6 @@ public class AccountAttributes {
 
 
 
-	public String email;
-
 	public String phone;
 
 	public String address;
@@ -35,9 +33,7 @@ public class AccountAttributes {
 
 	public boolean hasSomething() {
 
-		return (email != null && !email.isBlank())
-
-				|| (phone != null && !phone.isBlank())
+		return (phone != null && !phone.isBlank())
 
 				|| (address != null && !address.isBlank());
 

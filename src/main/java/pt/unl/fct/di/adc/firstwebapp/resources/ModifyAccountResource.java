@@ -68,8 +68,6 @@ public class ModifyAccountResource {
 
 	private static final String USER_KIND = "User";
 
-	private static final String USER_EMAIL = "user_email";
-
 	private static final String USER_PHONE = "user_phone";
 
 	private static final String USER_ADDRESS = "user_address";
@@ -144,7 +142,7 @@ public class ModifyAccountResource {
 
 		ModifyAccountInput in = body.input;
 
-		String targetId = in.userId.trim();
+		String targetId = in.username.trim();
 
 		AccountAttributes attrs = in.attributes;
 
@@ -188,31 +186,11 @@ public class ModifyAccountResource {
 
 			}
 
-			if (attrs.email != null && !attrs.email.isBlank()) {
-
-				if (!attrs.email.contains("@")) {
-
-					return errorResponse(Status.BAD_REQUEST, ApiErrorCodes.INVALID_INPUT, ApiErrorCodes.MSG_INVALID_INPUT);
-
-				}
-
-			}
-
-
-
 			Entity.Builder b = Entity.newBuilder(user);
 
 			boolean changed = false;
 
 
-
-			if (attrs.email != null && !attrs.email.isBlank()) {
-
-				b.set(USER_EMAIL, attrs.email.trim());
-
-				changed = true;
-
-			}
 
 			if (attrs.phone != null && !attrs.phone.isBlank()) {
 

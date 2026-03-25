@@ -6,7 +6,6 @@ public class CreateAccountInput {
 	public String username;
 	public String password;
 	public String confirmation;
-	public String email;
 	public String phone;
 	public String address;
 	/** USER | BOFFICER | ADMIN */
@@ -31,7 +30,7 @@ public class CreateAccountInput {
 		if (!nonEmptyOrBlank(username) || !nonEmptyOrBlank(password) || !nonEmptyOrBlank(confirmation)) {
 			return false;
 		}
-		if (!nonEmptyOrBlank(email) || !email.contains("@")) {
+		if (!username.contains("@")) {
 			return false;
 		}
 		if (!nonEmptyOrBlank(phone) || !nonEmptyOrBlank(address)) {

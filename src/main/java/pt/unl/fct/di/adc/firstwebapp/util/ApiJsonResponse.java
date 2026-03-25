@@ -62,9 +62,7 @@ public class ApiJsonResponse {
 	}
 
 	public static class UserSummary {
-		public String userId;
 		public String username;
-		public String email;
 		public String role;
 	}
 
@@ -106,9 +104,8 @@ public class ApiJsonResponse {
 	/** One stored {@link pt.unl.fct.di.adc.firstwebapp.util.SessionStore#KIND} row. */
 	public static class AuthenticatedSessionRow {
 		public String tokenId;
-		public String userId;
+		public String username;
 		public String role;
-		public long issuedAt;
 		public long expiresAt;
 	}
 
@@ -117,15 +114,15 @@ public class ApiJsonResponse {
 		public String status = "success";
 		public ShowUserRoleSuccessData data;
 
-		public ShowUserRoleSuccess(String userId, String role) {
+		public ShowUserRoleSuccess(String username, String role) {
 			this.data = new ShowUserRoleSuccessData();
-			this.data.userId = userId;
+			this.data.username = username;
 			this.data.role = role;
 		}
 	}
 
 	public static class ShowUserRoleSuccessData {
-		public String userId;
+		public String username;
 		public String role;
 	}
 
@@ -134,33 +131,27 @@ public class ApiJsonResponse {
 		public String status = "success";
 		public ChangeUserRoleSuccessData data;
 
-		public ChangeUserRoleSuccess(String userId, String role) {
+		public ChangeUserRoleSuccess(String username, String role) {
 			this.data = new ChangeUserRoleSuccessData();
-			this.data.userId = userId;
+			this.data.username = username;
 			this.data.role = role;
 		}
 	}
 
 	public static class ChangeUserRoleSuccessData {
-		public String userId;
+		public String username;
 		public String role;
 	}
 
 	/** Op9 ChangePassword success  */
 	public static class ChangePasswordSuccess {
 		public String status = "success";
-		public ChangePasswordSuccessData data;
+		public ChangePasswordSuccessData data = new ChangePasswordSuccessData();
 
-		public ChangePasswordSuccess(String userId) {
-			this.data = new ChangePasswordSuccessData();
-			this.data.userId = userId;
-			this.data.message = "Password updated successfully";
-		}
 	}
 
 	public static class ChangePasswordSuccessData {
-		public String userId;
-		public String message;
+		public String message = "Password changed successfully";
 	}
 
 	/** Op10 Logout success  */

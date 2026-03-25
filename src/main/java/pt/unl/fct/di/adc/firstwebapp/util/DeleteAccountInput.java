@@ -1,16 +1,16 @@
 package pt.unl.fct.di.adc.firstwebapp.util;
 
 /**
- * Op4: {@code "input": { "userId": "..." }} .
+ * Op4: {@code "input": { "username": "..." }} .
  */
 public class DeleteAccountInput {
 
-	public String userId;
+	public String username;
 
 	public DeleteAccountInput() {
 	}
 
 	public boolean valid() {
-		return userId != null && !userId.isBlank();
+		return username != null && !username.isBlank();
 	}
 }

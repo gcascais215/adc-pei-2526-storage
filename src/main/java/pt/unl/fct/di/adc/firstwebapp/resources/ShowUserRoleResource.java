@@ -136,7 +136,7 @@ public class ShowUserRoleResource {
 
 
 
-		String targetId = body.input.userId.trim();
+		String targetId = body.input.username.trim();
 
 		Key userKey = datastore.newKeyFactory().setKind(USER_KIND).newKey(targetId);
 

@@ -87,47 +87,31 @@ public class ShowAuthenticatedSessionsResource {
 	public Response showSessions(ShowAuthenticatedSessionsRequest body) {
 
 		if (body == null || body.token == null) {
-
 			return errorResponse(Status.BAD_REQUEST, ApiErrorCodes.INVALID_INPUT, ApiErrorCodes.MSG_INVALID_INPUT);
-
 		}
-
-
 
 		AuthToken t = body.token;
 
 		if (t.tokenId == null || t.tokenId.isBlank()) {
-
 			return errorResponse(Status.UNAUTHORIZED, ApiErrorCodes.INVALID_TOKEN, ApiErrorCodes.MSG_INVALID_TOKEN);
-
 		}
-
-
 
 		Entity session = datastore.get(SessionStore.sessionKey(datastore, t.tokenId));
 
 		if (session == null) {
-
 			return errorResponse(Status.UNAUTHORIZED, ApiErrorCodes.INVALID_TOKEN, ApiErrorCodes.MSG_INVALID_TOKEN);
-
 		}
-
-
 
 		long now = System.currentTimeMillis();
 
 		if (session.getLong(SessionStore.PROP_EXPIRES_AT) <= now) {
-
 			return errorResponse(Status.UNAUTHORIZED, ApiErrorCodes.TOKEN_EXPIRED, ApiErrorCodes.MSG_TOKEN_EXPIRED);
-
 		}
 
 		String role = session.getString(SessionStore.PROP_ROLE);
 
 		if (!"ADMIN".equals(role)) {
-
 			return errorResponse(Status.FORBIDDEN, ApiErrorCodes.UNAUTHORIZED, ApiErrorCodes.MSG_UNAUTHORIZED);
-
 		}
 
 		try {
@@ -137,47 +121,29 @@ public class ShowAuthenticatedSessionsResource {
 			List<AuthenticatedSessionRow> out = new ArrayList<>(rows.size());
 
 			for (Entity e : rows) {
-
 				AuthToken tok = SessionStore.toAuthToken(e);
-
 				AuthenticatedSessionRow row = new AuthenticatedSessionRow();
-
 				row.tokenId = tok.tokenId;
-
-				row.userId = tok.userId;
-
+				row.username = tok.username;
 				row.role = tok.role;
-
-				row.issuedAt = tok.issuedAt;
-
 				row.expiresAt = tok.expiresAt;
-
 				out.add(row);
-
 			}
 
 			ApiJsonResponse.ShowAuthenticatedSessionsSuccess ok = new ApiJsonResponse.ShowAuthenticatedSessionsSuccess(out);
-
 			return Response.ok(GSON.toJson(ok)).build();
 
 		} catch (Exception e) {
-
 			LOG.log(Level.SEVERE, "showSessions failed", e);
-
 			return errorResponse(Status.SERVICE_UNAVAILABLE, ApiErrorCodes.DATASTORE_ERROR,
-
 					ApiErrorCodes.MSG_DATASTORE + " (" + (e.getMessage() != null ? e.getMessage() : e.getClass().getSimpleName()) + ")");
-
 		}
 
 	}
 
 
-
 	private static Response errorResponse(Status http, String code, String message) {
-
 		return Response.status(http).entity(GSON.toJson(new ApiJsonResponse.ErrorBody(code, message))).build();
-
 	}
 
 }

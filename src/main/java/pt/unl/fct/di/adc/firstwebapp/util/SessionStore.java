@@ -31,7 +31,7 @@ public final class SessionStore {
 	public static Entity buildSessionEntity(Datastore datastore, AuthToken token) {
 		Key key = sessionKey(datastore, token.tokenId);
 		return Entity.newBuilder(key)
-				.set(PROP_USER_ID, token.userId)
+				.set(PROP_USER_ID, token.username)
 				.set(PROP_ROLE, token.role)
 				.set(PROP_ISSUED_AT, token.issuedAt)
 				.set(PROP_EXPIRES_AT, token.expiresAt)
@@ -108,7 +108,7 @@ public final class SessionStore {
 	public static AuthToken toAuthToken(Entity session) {
 		AuthToken t = new AuthToken();
 		t.tokenId = session.getKey().getName();
-		t.userId = session.getString(PROP_USER_ID);
+		t.username = session.getString(PROP_USER_ID);
 		t.role = session.getString(PROP_ROLE);
 		t.issuedAt = session.getLong(PROP_ISSUED_AT);
 		t.expiresAt = session.getLong(PROP_EXPIRES_AT);
