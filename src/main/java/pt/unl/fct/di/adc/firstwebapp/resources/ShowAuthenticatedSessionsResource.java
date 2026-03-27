@@ -59,31 +59,19 @@ import pt.unl.fct.di.adc.firstwebapp.util.ShowAuthenticatedSessionsRequest;
  */
 
 @Path("/showauthsessions")
-
 @Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
-
 public class ShowAuthenticatedSessionsResource {
 
-
-
 	private static final Logger LOG = Logger.getLogger(ShowAuthenticatedSessionsResource.class.getName());
-
 	private static final Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
-
 	private static final Gson GSON = new Gson();
-
-
 
 	public ShowAuthenticatedSessionsResource() {
 
 	}
 
-
-
 	@POST
-
 	@Consumes(MediaType.APPLICATION_JSON)
-
 	public Response showSessions(ShowAuthenticatedSessionsRequest body) {
 
 		if (body == null || body.token == null) {
@@ -117,7 +105,6 @@ public class ShowAuthenticatedSessionsResource {
 		try {
 
 			List<Entity> rows = SessionStore.listAllSessions(datastore);
-
 			List<AuthenticatedSessionRow> out = new ArrayList<>(rows.size());
 
 			for (Entity e : rows) {

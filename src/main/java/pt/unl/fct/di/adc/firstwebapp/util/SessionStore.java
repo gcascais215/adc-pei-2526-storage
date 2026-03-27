@@ -40,8 +40,6 @@ public final class SessionStore {
 
 	/**
 	 * Returns a non-expired session for this user, if any.
-	 * Uses only equality on {@link #PROP_USER_ID} (automatic index) and filters {@code expires_at} in memory
-	 * so no composite index is required.
 	 */
 	public static Entity findActiveSession(Transaction txn, String userId) {
 		long now = System.currentTimeMillis();
@@ -61,23 +59,6 @@ public final class SessionStore {
 			}
 		}
 		return best;
-	}
-
-	/**
-	 * All {@link #KIND} rows for this user (active and expired), newest {@link #PROP_ISSUED_AT} first.
-	 */
-	public static List<Entity> listSessionsForUser(Datastore datastore, String userId) {
-		Query<Entity> q = Query.newEntityQueryBuilder()
-				.setKind(KIND)
-				.setFilter(PropertyFilter.eq(PROP_USER_ID, userId))
-				.build();
-		QueryResults<Entity> r = datastore.run(q);
-		List<Entity> list = new ArrayList<>();
-		while (r.hasNext()) {
-			list.add(r.next());
-		}
-		list.sort(Comparator.comparingLong((Entity e) -> e.getLong(PROP_ISSUED_AT)).reversed());
-		return list;
 	}
 
 	/** {@code true} if at least one {@link #KIND} row exists for this {@link #PROP_USER_ID}. */
